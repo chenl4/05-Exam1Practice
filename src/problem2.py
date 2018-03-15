@@ -102,7 +102,7 @@ def problem2a(circle, rectangle, window):
       :type window:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -201,7 +201,7 @@ def problem2b(rect, n, delta, win):
       :type win:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -209,6 +209,41 @@ def problem2b(rect, n, delta, win):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 25 minutes.
     # ------------------------------------------------------------------
+
+    rect.attach_to(win)
+    if rect.corner_1.x > rect.corner_2.x and \
+            rect.corner_1.y > rect.corner_2.y:
+        x1 = rect.corner_2.x
+        y1 = rect.corner_2.y
+        x2 = rect.corner_1.x
+        y2 = rect.corner_1.y
+    elif rect.corner_1.x > rect.corner_2.x and \
+            rect.corner_1.y < rect.corner_2.y:
+        x1 = rect.corner_2.x
+        y1 = rect.corner_1.y
+        x2 = rect.corner_1.x
+        y2 = rect.corner_2.y
+    elif rect.corner_1.x < rect.corner_2.x and \
+            rect.corner_1.y > rect.corner_2.y:
+        x1 = rect.corner_1.x
+        y1 = rect.corner_2.y
+        x2 = rect.corner_2.x
+        y2 = rect.corner_1.y
+    else:
+        x1 = rect.corner_1.x
+        y1 = rect.corner_1.y
+        x2 = rect.corner_2.x
+        y2 = rect.corner_2.y
+
+    for _ in range(n):
+        rect_new = rg.Rectangle(rg.Point(x1, y1), rg.Point(x2, y2))
+        rect_new.attach_to(win)
+        x1 = x1 - delta
+        y1 = y1 - delta
+        x2 = x2 + delta
+        y2 = y2 + delta
+
+    win.render()
 
 
 # ----------------------------------------------------------------------
