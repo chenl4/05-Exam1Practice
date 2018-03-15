@@ -115,15 +115,28 @@ def problem2a(circle, rectangle, window):
     rectangle.attach_to(window)
     window.render()
     window.continue_on_mouse_click()
-    if rectangle.corner_1.x > rectangle.corner_2.x:
+    if rectangle.corner_1.x > rectangle.corner_2.x and \
+            rectangle.corner_1.y > rectangle.corner_2.y:
+        start_point = rg.Point(rectangle.corner_1.x, rectangle.corner_2.y)
+        end_point = rg.Point(rectangle.corner_2.x, rectangle.corner_1.y)
+    elif rectangle.corner_1.x > rectangle.corner_2.x and \
+            rectangle.corner_1.y < rectangle.corner_2.y:
         start_point = rg.Point(rectangle.corner_1.x, rectangle.corner_1.y)
         end_point = rg.Point(rectangle.corner_2.x, rectangle.corner_2.y)
-    else:
+    elif rectangle.corner_1.x < rectangle.corner_2.x and \
+            rectangle.corner_1.y > rectangle.corner_2.y:
         start_point = rg.Point(rectangle.corner_2.x, rectangle.corner_2.y)
         end_point = rg.Point(rectangle.corner_1.x, rectangle.corner_1.y)
+    else:
+        start_point = rg.Point(rectangle.corner_2.x, rectangle.corner_1.y)
+        end_point = rg.Point(rectangle.corner_1.x, rectangle.corner_2.y)
     line = rg.Line(start_point, end_point)
     line.arrow = 'last'
     line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    circle.fill_color = rectangle.outline_color
+    window.render()
 
 
 def run_test_problem2b():
